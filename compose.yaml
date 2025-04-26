@@ -8,9 +8,8 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
+  theopneustos:
     image: ghcr.io/hhntr/theopneustos
-    container_name: theopneustos
     labels:
       - "traefik.http.routers.theopneustos.rule=Host(`api.theopneustos.bible`)"
   reverse-proxy:
