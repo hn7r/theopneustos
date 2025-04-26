@@ -11,7 +11,10 @@ services:
   theopneustos:
     image: ghcr.io/hhntr/theopneustos
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.theopneustos.rule=Host(`api.theopneustos.bible`)"
+      - "traefik.http.routers.theopneustos.entrypoints=websecure"
+      - "traefik.http.routers.theopneustos.tls.certresolver=myresolver"
     deploy:
       mode: replicated
       replicas: 3
@@ -20,15 +23,28 @@ services:
     command:
       - "--api.insecure=true"
       - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=webmaster@theopneustos.bible"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     ports:
       # The HTTP Port
       - "80:80"
+      # The HTTPS Port
+      - "443:443"
       # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
+      - letsencrypt:/letsencrypt
       # So that Traefik can listen to Docker events
       - /var/run/docker.sock:/var/run/docker.sock
 
+volumes:
+  letsencrypt:
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
 # start the database before your application. The `db-data` volume persists the
