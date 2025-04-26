@@ -12,6 +12,9 @@ services:
     image: ghcr.io/hhntr/theopneustos
     labels:
       - "traefik.http.routers.theopneustos.rule=Host(`api.theopneustos.bible`)"
+    deploy:
+      mode: replicated
+      replicas: 3
   reverse-proxy:
     image: traefik:v3.1
     command:
