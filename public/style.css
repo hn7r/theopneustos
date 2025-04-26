@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "CrimsonText";
+    src: url("font/CrimsonText/CrimsonText-Regular.ttf");
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url("font/CrimsonText/CrimsonText-Italic.ttf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url("font/CrimsonText/CrimsonText-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url("font/CrimsonText/CrimsonText-BoldItalic.ttf");
+    font-style: italic;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Literata";
+    src: url("font/Literata/Literata-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Literata";
+    src: url("font/Literata/Literata-Italic.ttf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Literata";
+    src: url("font/Literata/Literata-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Literata";
+    src: url("font/Literata/Literata-BoldItalic.ttf");
+    font-style: italic;
+    font-weight: bold;
+}
+
+body {
+    font-family: "CrimsonText", serif;
+}
+
+.main-content {
+    margin: 10vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.greek {
+    font-family: "Literata", serif;
+}
