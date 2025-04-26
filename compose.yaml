@@ -26,7 +26,7 @@ services:
       context: .
       target: final
     labels:
-      - "traefik.http.routers.theopneustos.rule=Host(`theopneustos.bible`)"
+      - "traefik.http.routers.theopneustos.rule=Host(`api.theopneustos.bible`)"
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
