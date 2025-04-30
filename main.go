@@ -5,11 +5,17 @@ import (
 	"net/http"
 )
 
+const BaseURL = "https://api.theopneustos.bible"
+
 func main() {
 	fs := http.FileServer(http.Dir("public"))
 	http.Handle("/", fs)
 
-	http.HandleFunc("/reference", handleReference)
+	// Get the passage and its decorated reference
+	http.HandleFunc("/{version}/reference", handleReference)
+
+	// Get the passage and its hypermedia
+	http.HandleFunc("/{version}/text", handleText)
 
 	log.Println("Server is running on port 8080...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
