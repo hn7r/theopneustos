@@ -95,8 +95,8 @@ func GetText(w http.ResponseWriter, r *http.Request) {
 	response := map[string]string{
 		"reference": decorateReference(reference),
 		"text":      passage,
-		//"prevVerse": getPreviousVerse(reference),
-		//"nextVerse": getNextVerse(reference),
+		"prevVerse": getUrl(getPreviousVerse(reference)),
+		"nextVerse": getUrl(getNextVerse(reference)),
 	}
 
 	err = enc.Encode(response)

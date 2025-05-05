@@ -295,6 +295,10 @@ func getPreviousVerse(ref Reference) Reference {
 	return Reference{ref.book - 1, constants.ChapterCount[ref.book-1], constants.VerseCounts[ref.book-1][ref.chapter-1]}
 }
 
+func getUrl(ref Reference) string {
+	return fmt.Sprintf("https://api.theopneustos.bible/kjv/text?q=%02d%03d%03d", ref.book, ref.chapter, ref.verse)
+}
+
 func getNextVerse(ref Reference) Reference {
 	if ref == LastVerse {
 		return FirstVerse
@@ -323,7 +327,7 @@ func isValidReference(ref Reference) bool {
 		return false
 	}
 
-	if ref.verse == 0 || ref.verse > constants.VerseCounts[ref.book][chapterCount-1] {
+	if ref.verse == 0 || ref.verse > constants.VerseCounts[ref.book][ref.chapter-1] {
 		return false
 	}
 
