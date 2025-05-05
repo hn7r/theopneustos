@@ -48,6 +48,10 @@
 
 body {
     font-family: "CrimsonText", serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 2rem;
+    color: #333;
 }
 
 .main-content {
@@ -63,4 +67,54 @@ body {
 
 .greek {
     font-family: "Literata", serif;
+}
+
+h1, h2 {
+    color: #2a4d69;
+}
+
+code {
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+pre {
+    background: #f0f0f0;
+    padding: 1rem;
+    overflow-x: auto;
+    border-left: 4px solid #2a4d69;
+}
+
+section {
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+a {
+    color: #2a4d69;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.endpoint {
+    font-weight: bold;
+    color: #d35400;
+}
+
+.label {
+    font-weight: bold;
+    display: inline-block;
+    width: 120px;
+}
+
+ul {
+    padding-left: 1.5rem;
 }

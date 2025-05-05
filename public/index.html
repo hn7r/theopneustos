@@ -12,17 +12,56 @@
         <div class="main-content">
             <div class="container">
                 <h1 style="font-size: 7em">Theopneustos</h1>
-                <h3 style="font-size: 1.5em">Scripture REST API Service</h3>
-                <p style="font-size: 3.5em">
-                    <span class="greek">θεόπνευστος</span><span><i> - "God-breathed"</i></span>
-                </p>
+                <h3 style="font-size: 1.5em">Hypermedia-based API</h3>
+<!--                <p style="font-size: 3.5em">-->
+<!--                    <span class="greek">θεόπνευστος</span><span><i> - "God-breathed"</i></span>-->
+<!--                </p>-->
 
-                <article>
-                    Endpoints:
+                <body>
+
+                <h1>📜 Docs 📜</h1>
+
+                <section>
+                    <h2>GET <span class="endpoint">/:version/reference</span></h2>
+                    <p>Returns the <strong>text</strong> of a Bible verse and its <strong>decorated reference</strong>.</p>
+
+                    <p><span class="label">Path Param:</span> <code>:version</code> — supported: <code>kjv</code></p>
+                    <p><span class="label">Query Param:</span> <code>q</code> — required, string. Accepts:</p>
                     <ul>
-                        <li><code>/reference?q=&v=</code> <p> - Returns JSON</p></li>
+                        <li>Common abbreviations (e.g., <code>Jn 3:16</code>) — <a href="https://www.logos.com/bible-book-abbreviations" target="_blank">list here</a></li>
+                        <li>8-digit verse IDs (e.g., <code>43003016</code>)</li>
                     </ul>
-                </article>
+
+                    <p><strong>Example Request:</strong></p>
+                    <pre>GET /kjv/reference?q=John+3:16</pre>
+
+                    <p><strong>Example Response:</strong></p>
+                    <pre>{
+  "text": "For God so loved the world, that he gave his only begotten Son...",
+  "reference": "John 3:16"
+}</pre>
+                </section>
+
+                <section>
+                    <h2>GET <span class="endpoint">/:version/text</span></h2>
+                    <p>Same as <code>/reference</code>, but includes <code>prevVerse</code> and <code>nextVerse</code> URLs.</p>
+
+                    <p><span class="label">Path Param:</span> <code>:version</code> — supported: <code>kjv</code></p>
+                    <p><span class="label">Query Param:</span> <code>q</code> — required, string. Same as above.</p>
+
+                    <p><strong>Example Request:</strong></p>
+                    <pre>GET /kjv/text?q=43003016</pre>
+
+                    <p><strong>Example Response:</strong></p>
+                    <pre>{
+  "text": "For God so loved the world, that he gave his only begotten Son...",
+  "reference": "John 3:16",
+  "prevVerse": "/kjv/text?q=43003015",
+  "nextVerse": "/kjv/text?q=43003017"
+}</pre>
+                </section>
+
+                </body>
 
 
             </div>
