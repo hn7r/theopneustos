@@ -342,36 +342,43 @@ func isValidVersion(version string) bool {
 	switch version {
 	case "KJV":
 		return true
+	case "ESV":
+		return true
 	default:
 		return false
 	}
 }
 
 func getPassage(book int, chapter int, verse int, version string) (string, error) {
-	path := xmlpath.MustCompile(
-		fmt.Sprintf(
-			"/bible/book[@num='%d']/chapter[@num='%d']/verse[@num='%d']",
-			book,
-			chapter,
-			verse,
-		),
-	)
+	if version == "KJV" {
+		path := xmlpath.MustCompile(
+			fmt.Sprintf(
+				"/bible/book[@num='%d']/chapter[@num='%d']/verse[@num='%d']",
+				book,
+				chapter,
+				verse,
+			),
+		)
 
-	bible, err := os.Open("./bible/kjv.xml")
-	if err != nil {
-		return "", err
+		bible, err := os.Open("./bible/kjv.xml")
+		if err != nil {
+			return "", err
+		}
+
+		root, err := xmlpath.Parse(bible)
+		if err != nil {
+			return "", err
+		}
+
+		if value, ok := path.String(root); ok {
+			return value, nil
+		}
+
+		return "", errors.New("unable to locate text")
+	} else {
+		return getEsvText(book, chapter, verse), nil
 	}
 
-	root, err := xmlpath.Parse(bible)
-	if err != nil {
-		return "", err
-	}
-
-	if value, ok := path.String(root); ok {
-		return value, nil
-	}
-
-	return "", errors.New("unable to locate text")
 }
 
 func decorateReference(ref Reference) string {
