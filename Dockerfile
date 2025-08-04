@@ -19,6 +19,7 @@ WORKDIR /app
 # Copy the binary and static files from the builder stage
 COPY --from=builder /app/theopneustos .
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/bible ./bible
 
 # Expose the port
 EXPOSE 7777
