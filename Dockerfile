@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Build the Go app
-RUN go build -o theopneustos main.go
+RUN go build -o theopneustos .
 
 # Use a minimal base image to run the app
 FROM alpine:latest
