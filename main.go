@@ -17,6 +17,6 @@ func main() {
 	// Get the passage and its hypermedia
 	http.HandleFunc("/{version}/text", handleText)
 
-	log.Println("Server is running on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Server is running on port 7777...")
+	log.Fatal(http.ListenAndServe(":7777", nil))
 }
