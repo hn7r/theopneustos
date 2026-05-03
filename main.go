@@ -19,8 +19,8 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.Handle("/", fs)
-	mux.Handle("/{version}/reference", apiKeyMiddleware(http.HandlerFunc(handleReference)))
-	mux.Handle("/{version}/text", apiKeyMiddleware(http.HandlerFunc(handleText)))
+	mux.Handle("/{version}/reference", http.HandlerFunc(handleReference))
+	mux.Handle("/{version}/text", http.HandlerFunc(handleText))
 
 	log.Fatal(http.ListenAndServe(":7777", mux))
 }
