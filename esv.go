@@ -52,7 +52,7 @@ func getEsvText(book int, chapter int, verse int) string {
 	baseUrl.RawQuery = queryParams.Encode()
 
 	req, _ := http.NewRequest("GET", baseUrl.String(), nil)
-	req.Header.Set("Authorization", "Token b7309bed95097533d73df5a5c1bb78205dfadc9e")
+	req.Header.Set("Authorization", "Token <TOKEN>")
 
 	// Using the default client (part of std lib)
 	resp, err := http.DefaultClient.Do(req)
